@@ -51,7 +51,7 @@ server <- function(input, output, session) {
     lasthighlight <<- info
     tmplist <- list()
     ii <- 1
-    for (seg in colnames(Masterdata)[(numCond+1):(numCond+15)]) {
+    for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       tmp <-  Masterdata[lasthighlight, paste0('R', seg) ]
       if (!identical(tmp, character(0))) {
         tmplist[[ii]] <- tmp
@@ -63,10 +63,10 @@ server <- function(input, output, session) {
     updateTextInput(session, 'lastHilight' , value = lastHliteword)
     info <<- input$tbl_row_last_clicked
     updateTextInput(session,"testDay",value = Masterdata[info,"Day"])
-    for (seg in colnames(Masterdata)[(numCond+1):(numCond+15)]) {
+    for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       updateTextInput(session, paste0('T', seg) , value = Masterdata[info, seg])
     }
-    for (seg in colnames(Masterdata)[(numCond+1):(numCond+15)]) {
+    for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       updateTextInput(session, paste0('R', seg) , value = Masterdata[info, seg])
     }
     
@@ -85,13 +85,13 @@ server <- function(input, output, session) {
   
   #insert previously entered value at current line
   observeEvent(input$insertLast, {
-    for (seg in colnames(Masterdata)[(numCond+1):(numCond+15)]) {
+    for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       updateTextInput(session, paste0('R', seg) , value = Masterdata[lastinfo, paste0('R', seg) ])
     }
   })
   #insert previously higlighted line at current line
   observeEvent(input$insertLastHighlighted, {
-    for (seg in colnames(Masterdata)[(numCond+1):(numCond+15)]) {
+    for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       updateTextInput(session, paste0('R', seg) , value = Masterdata[lasthighlight, paste0('R', seg) ])
     }
   })
