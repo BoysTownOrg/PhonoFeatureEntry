@@ -50,7 +50,7 @@ ui <- fluidRow(
   actionButton("addProp", "Save Calc"),
   actionButton("insertLast", "Insert previous entry"),
   textInputRow('lasttext', "", '-----',"text-align:center; border-color:transparent; width: 100px;"),
-  actionButton("insertLastHighlighted", "Insert last highlisted"),
+  actionButton("insertLastHighlighted", "Insert last highlighted"),
   textInputRow('lastHilight', "", '-----',"text-align:center; border-color:transparent; width: 100px;"),
   tags$br(),
   textInput("subjectID","ID code:"),

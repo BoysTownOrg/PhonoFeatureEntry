@@ -53,11 +53,14 @@ server <- function(input, output, session) {
     ii <- 1
     for (seg in colnames(Masterdata)[(numCond+1):(numCond+1+length(resp_seq_names))]) {
       tmp <-  Masterdata[lasthighlight, paste0('R', seg) ]
-      if (!identical(tmp, character(0))) {
+      if (!identical(tmp, character(0)) ) {
+        if (length(tmp) > 0){
         tmplist[[ii]] <- tmp
         ii <- ii+1
+        }
       }
     }
+    tmplist[is.na(tmplist)]<-NULL
     lastHliteword <<- paste(tmplist,collapse="")
     
     updateTextInput(session, 'lastHilight' , value = lastHliteword)
